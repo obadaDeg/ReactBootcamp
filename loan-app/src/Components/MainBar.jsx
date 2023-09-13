@@ -7,7 +7,7 @@ export default function MainBar() {
     phoneNumber: "",
     age: "",
     isEmployee: false,
-    range: "Less than 1500",
+    range: "Please Choose the Salary",
   });
 
   const isOK = user.name && user.phoneNumber && user.age;
@@ -20,15 +20,23 @@ export default function MainBar() {
         onSubmit={(event) => {
           event.preventDefault();
           if (user.age < 18 || user.age > 65) {
-            return <Message message="The age is not Allowed" className={"message"}></Message>;
+            return (
+              <Message
+                message="The age is not Allowed"
+                className={"message"}
+              ></Message>
+            );
           } else if (
             user.phoneNumber.length > 10 ||
             user.phoneNumber.length < 8
           ) {
-            return <Message message="The Phone Number is not Allowed" className={"message"}></Message>;
-          }
-          else
-          {
+            return (
+              <Message
+                message="The Phone Number is not Allowed"
+                className={"message"}
+              ></Message>
+            );
+          } else {
             return (
               <Message
                 message="The request has been submitted successfullty"
@@ -46,6 +54,7 @@ export default function MainBar() {
           <p className="title">Name:</p>
           <input
             type="text"
+            value={user.name}
             onChange={(event) => {
               setUserData({ ...user, name: event.target.value });
             }}
@@ -55,6 +64,7 @@ export default function MainBar() {
           <p className="title">Phone Number:</p>
           <input
             type="text"
+            value={user.phoneNumber}
             onChange={(event) => {
               setUserData({ ...user, phoneNumber: event.target.value });
             }}
@@ -64,6 +74,7 @@ export default function MainBar() {
           <p className="title">Age:</p>
           <input
             type="number"
+            value={user.age}
             onChange={(event) => {
               setUserData({ ...user, age: event.target.value });
             }}
@@ -73,6 +84,7 @@ export default function MainBar() {
           <p className="title">Are you an employee?</p>
           <input
             type="checkbox"
+            value={user.isEmployee}
             onChange={(event) => {
               setUserData({ ...user, isEmployee: event.target.checked });
             }}
@@ -86,6 +98,9 @@ export default function MainBar() {
               setUserData({ ...user, range: event.target.value });
             }}
           >
+            <option value="Plaase Choose a Salary" disabled>
+              Plaase Choose a Salary
+            </option>
             <option value="Less than 1500">Less than 1500</option>
             <option value="1500-3500">Between 1500 and 3500</option>
             <option value="More than 3500">More than 3500</option>
@@ -98,3 +113,11 @@ export default function MainBar() {
     </div>
   );
 }
+
+
+
+// create context object
+
+// rap the provider
+
+// consume the target componenet
